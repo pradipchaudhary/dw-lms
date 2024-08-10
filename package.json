@@ -1,0 +1,18 @@
+{
+    "name": "dw-lms",
+    "version": "1.0.0",
+    "description": "DW-LMS is a Node.js application for managing user authentication and authorization, providing a secure and scalable solution for handling logins, roles, and access control in Deerwalk applications.",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon server.js"
+    },
+    "keywords": [],
+    "author": "Pradip Chaudhary",
+    "license": "ISC",
+    "dependencies": {
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2"
+    }
+}
