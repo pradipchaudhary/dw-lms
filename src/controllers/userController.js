@@ -118,3 +118,45 @@ export const verifyEmail = async (req, res, next) => {
         });
     }
 };
+
+export const login = async (req, res, next) => {
+    try {
+        const { email, password } = req.body;
+        console.log(email);
+        const user = await User.findOne({ email });
+        if (user) {
+            if (user.isVerified) {
+                const isValidPassword = await bcrypt.compare(
+                    password,
+                    user.password
+                );
+                if (isValidPassword) {
+                    // Generate token
+                    const info = {
+                        userId: user._id,
+                    };
+                    const token = jwt.sign(info, process.env.JWT_SECRET, {
+                        expiresIn: "365d",
+                    });
+                    res.status(200).json({
+                        success: true,
+                        message: "User login successfully.",
+                        data: token,
+                    });
+                } else {
+                    throw new Error("Password does not match");
+                }
+            } else {
+                throw new Error("Credential does not match ");
+            }
+        } else {
+            throw new Error("User not found!");
+        }
+        console.log(user);
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};
