@@ -2,6 +2,7 @@ import { config } from "dotenv";
 import express, { json } from "express";
 import connectDB from "./src/config/db.js";
 import userRoutes from "./src/routes/userRoutes.js";
+import cors from "cors";
 
 config();
 
@@ -13,6 +14,7 @@ connectDB();
 
 // middleware
 app.use(json());
+app.use(cors());
 
 app.get("/", (req, res) => {
     res.send("Home page ");

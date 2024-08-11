@@ -39,6 +39,10 @@ const userSchema = mongoose.Schema(
             enum: ["superAdmin", "admin", "customer"],
             default: "customer",
         },
+        isVerified: {
+            type: Boolean,
+            default: false, // Set default value to false
+        },
     },
     { timestamps: true }
 );
