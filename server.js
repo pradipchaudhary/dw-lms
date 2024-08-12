@@ -3,6 +3,7 @@ import express, { json } from "express";
 import connectDB from "./src/config/db.js";
 import userRoutes from "./src/routes/userRoutes.js";
 import cors from "cors";
+import errorHandler from "./src/middleware/errorMiddleware.js";
 
 config();
 
@@ -23,6 +24,8 @@ app.get("/", (req, res) => {
 // Routers
 app.use("/user", userRoutes);
 
+// Error handling middleware should be used last
+app.use(errorHandler);
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}.`);
 });
