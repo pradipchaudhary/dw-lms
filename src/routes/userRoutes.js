@@ -19,4 +19,6 @@ userRoutes.route("/my-profile").get(isAuth, myProfile);
 userRoutes.route("/update-profile").patch(isAuth, updateProfile);
 userRoutes.route("/update-password").patch(isAuth, updatePassword);
 
+userRoutes.route("/:id").get();
+
 export default userRoutes;
