@@ -50,9 +50,22 @@ To set up and run the DW-LMS project on your local machine, follow these steps:
     - Create a `.env` file in the root directory.
     - Add the following variables:
         ```bash
-        DB_URI=<your_mongodb_connection_string>
-        JWT_SECRET=<your_jwt_secret_key>
-        PORT=<your_preferred_port>
+       # Server Configuration
+        PORT=9000
+        
+        # Database Configuration
+        DB_URI=mongodb://localhost:27017/mydatabase
+        
+        # Email Service Configuration
+        EMAIL_USER=your-email@example.com
+        EMAIL_PASS=your-email-password
+        
+        # JWT Secret
+        JWT_SECRET=your_jwt_secret_key
+        
+        # Other Configuration
+        APP_NAME=Your Application Name
+
         ```
 
 5. **Run the application**:
