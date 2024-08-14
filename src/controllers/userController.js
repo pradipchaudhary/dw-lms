@@ -6,6 +6,23 @@ import { sendEmail } from "../utils/sendmail.js";
 
 config();
 
+//  Get all uer controller
+export const getAllUser = async (req, res, next) => {
+    try {
+        const data = await User.find();
+        res.status(200).json({
+            success: true,
+            message: "Get all users",
+            data: data,
+        });
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};
+
 // Create User controller
 export const createUser = async (req, res) => {
     try {
@@ -272,6 +289,67 @@ export const updatePassword = async (req, res, next) => {
     } catch (error) {
         // Step 9: Handle any errors that occur during the password update process
         // and send an error response with the error message.
+        res.status(400).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};
+
+// get single user controller
+export const getSingleUser = async (req, res, next) => {
+    try {
+        const result = await User.findById(req.params.id);
+        res.status(200).json({
+            success: true,
+            message: "Get single user.",
+            data: result,
+        });
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};
+
+// update single user controller
+export const updateSingleUser = async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+        const data = req.body;
+        delete data.email;
+        delete data.password;
+
+        const result = await User.findByIdAndUpdate(userId, data, {
+            new: true,
+        });
+        console.log(result);
+        res.status(201).json({
+            success: true,
+            message: "User update successfully.",
+            data: result,
+        });
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};
+
+// delete single user controller
+export const delteSingleUser = async (req, res, next) => {
+    try {
+        const userId = req.params.id;
+
+        const result = await User.findByIdAndDelete(userId);
+        res.status(201).json({
+            success: true,
+            message: "User delete successfully.",
+            data: result,
+        });
+    } catch (error) {
         res.status(400).json({
             success: false,
             message: error.message,
