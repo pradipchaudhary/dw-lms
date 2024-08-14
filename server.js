@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
 });
 
 // Routers
-app.use("/user", userRoutes);
+app.use("/api/user", userRoutes);
 
 // Error handling middleware should be used last
 app.use(errorHandler);
