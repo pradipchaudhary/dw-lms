@@ -8,12 +8,10 @@ const rollMiddleware = (roles) => {
             // }
             const _id = req._id;
             const user = await User.findById(_id);
-            if (roles.includes(user.role)) {
-                console.log("roll promited...");
-                next();
-            } else {
-                console.log("roll not promitted...");
+            if (!roles.includes(user.role)) {
+                return res.status(403).json({ msg: "Access denied" });
             }
+            next();
             // console.log(roles);
         } catch (error) {
             res.status(403).json({
