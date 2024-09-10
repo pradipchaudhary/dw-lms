@@ -68,7 +68,7 @@ export const createUser = async (req, res) => {
                 <p>Hello ${result.fullname},</p>
 
                 <p>Thank you for registering with us. Please confirm your email address by clicking the link below:</p>
-                <a href="http://localhost:${process.env.PORT}/verify-email?token=${token}"> http://localhost:${process.env.PORT}/verify-email?token=${token}</a>
+                <a href="http://localhost:5173/verify-email?token=${token}"> http://localhost:${process.env.PORT}/verify-email?token=${token}</a>
                 <p>If you didn't register for this account, you can ignore this email.</p><br>
                 
                 Thank you!
